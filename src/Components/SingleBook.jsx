@@ -10,6 +10,7 @@ import GetB from "./ToggleComments.jsx";
 import { type } from "os";
 import { throwStatement } from "@babel/types";
 import BookPagination from "./pagination.jsx";
+import { Link } from "react-router-dom"
 
 let shows;
 let lat;
@@ -36,10 +37,9 @@ class BookList extends React.Component {
   loadComment = async id => {
     var getId = id;
     console.log(getId);
-    var response = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/" + getId, {
+    var response = await fetch("https://strive-books-api.herokuapp.com/books/"+getId +"/comments/" , {
       headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: "basic dXNlcjM6blo0dUZkOWhCcDNkdktMdQ=="
+        "Content-Type": "application/json"
       })
     });
     var json = await response.json();
@@ -62,7 +62,9 @@ class BookList extends React.Component {
           <div className="row mb-2 pb-1">
             <div className="col-4 col-sm-4">
               <div className="">
+                <Link to={"/bookdetails/" + item.asin } >
                 <img className="" src={item.img} alt={item.title} />
+                </Link>
               </div>
             </div>
             <div className="col-8 col-sm-8 info-book">
@@ -70,7 +72,7 @@ class BookList extends React.Component {
               <p>
                 <strong>Price: </strong>$ {item.price}
               </p>
-              <Button onClick={() => this.loadComment(item.asin)}>Buy Now</Button>
+              <Button onClick={() => this.loadComment(item.asin)}>Show Comments</Button>
             </div>
           </div>
           <hr />
@@ -78,7 +80,12 @@ class BookList extends React.Component {
       );
     });
 
-    return shows;
+    return (<>
+    {this.state.comments && this.state.comments.map(x => <div>
+      {x.UserName} : {x.Text} -- {x.Date}
+    </div>)}
+    {shows}
+    </>);
   }
 
   componentDidMount = async () => {
