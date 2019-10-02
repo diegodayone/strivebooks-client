@@ -1,7 +1,13 @@
 import React from 'react';
+import BASE_URL from "../Data/config"
 
 class SingleBook extends React.Component {
     state = {  }
+
+    deleteFromCart = async asin =>{
+        await fetch(BASE_URL + "cart/diego/delete/" + asin, {method:"DELETE"})
+    }
+
     render() { 
         return (
             <div className="container mt-5 pt-5">
@@ -15,6 +21,7 @@ class SingleBook extends React.Component {
                         <h4>Quantity: {this.props.book.Quantity} </h4>
                         <h4> {this.props.book.Price} </h4>
                         <h4>Total: {this.props.book.Total}</h4>
+                        <button onClick={() => this.deleteFromCart(this.props.book.ASIN)}>Remove One from Cart</button>
                     </div>
                 </div>
         </div>

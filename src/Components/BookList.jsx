@@ -53,14 +53,7 @@ class BookList extends React.Component {
     return json;
   };
 
-  addToCart = async asin =>{
-    var res = await fetch(BASE_URL + "books/" + asin + "/addToCart/diego", {
-      method: "POST"
-    })
-    var resp = await res.text()
-    console.log(resp);
-
-  }
+  addToCart = async asin => await fetch(BASE_URL + "books/" + asin + "/addToCart/diego", { method: "POST" })
 
   render() {
     console.log(this.props.genre);
