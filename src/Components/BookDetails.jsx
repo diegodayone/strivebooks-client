@@ -19,7 +19,7 @@ class BookDetails extends React.Component {
             </div>
             <div className="col-md-6">
                 {this.state.comments.map((comment, index) => <div key={index}>
-                    {comment.UserName} : {comment.Text} -- {comment.Date}
+                    {comment.Reviewer} : {comment.Rate} -- {comment.Description}
                 </div>)}
 
                 <div>
@@ -33,20 +33,23 @@ class BookDetails extends React.Component {
     }
 
     sendComment = async()=>{
-        var res = await fetch("https://strive-books-api.herokuapp.com/books/"+this.state.book.asin +"/comments/",
+        var newComment = {
+            Description: this.state.Text,
+            Reviewer: this.state.UserName,
+            Rate: 3
+        }
+
+        var res = await fetch(BASE_URL+ "books/" + this.state.book.asin +"/comments/",
         {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify({
-                Text: this.state.Text,
-                UserName: this.state.UserName
-            }),
+            body: JSON.stringify(newComment),
             method: "POST"
         })
         
-        var newComment = await res.json();
+        //var newComment = await res.json();
         var comments = this.state.comments;
         comments.push(newComment)
         this.setState({
@@ -60,7 +63,7 @@ class BookDetails extends React.Component {
         var res = await fetch(BASE_URL + "books/" + asin);
         var book = await res.json();
 
-        var response = await fetch("https://strive-books-api.herokuapp.com/books/"+asin +"/comments/" , {
+        var response = await fetch(BASE_URL + "books/" +asin +"/comments/" , {
             headers: new Headers({
               "Content-Type": "application/json"
             })

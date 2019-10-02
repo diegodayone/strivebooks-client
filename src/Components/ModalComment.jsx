@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,FormGroup,Label,Input } from 'reactstrap';
+import BASE_URL from "../Data/config.js";
 
 class AddComment extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class AddComment extends React.Component {
     var obj = this.state.commentInfo;
     obj.elementId = getId;
     console.log(obj);
-    var response = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/",
+    var response = await fetch(BASE_URL + "api/comments/",
     {method: "POST",
     headers: {
         "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from "./SingleBook";
+import BookList from "./BookList";
 
 export default class BookPagination extends React.Component {
   constructor(props) {

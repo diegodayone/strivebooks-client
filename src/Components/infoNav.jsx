@@ -55,6 +55,9 @@ export default class InfoNav extends React.Component {
             <NavLink className="float-right" href="/">
               Log-in | Signup
             </NavLink>
+            <NavLink className="float-right" href="/shoppingcart">
+              Shopping Cart
+            </NavLink>
           </NavItem>
         </Nav>
       </div>

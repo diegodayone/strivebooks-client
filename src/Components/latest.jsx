@@ -6,7 +6,7 @@ import horror from "../Data/horror.json";
 import history from "../Data/history.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
-import Single from "./SingleBook";
+import Single from "./BookList";
 import BookPagination from "./pagination";
 import FilterBar from "./filterBar";
 

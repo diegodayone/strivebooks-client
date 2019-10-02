@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NewBooks from "./newBooks";
 import Footer from "./footer";
 import BookDetails from "./BookDetails"
+import Cart from "./Cart";
 
 class MyBook extends Component {
   render() {
@@ -35,6 +36,7 @@ class MyBook extends Component {
         />
         <Route path="/genre/:genre" component={Latest} />
         <Route path="/bookdetails/:asin" component={BookDetails} />
+        <Route path="/shoppingcart" component={Cart} />
       </Router>
     );
   }
