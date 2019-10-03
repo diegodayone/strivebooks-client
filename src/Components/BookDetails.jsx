@@ -48,6 +48,9 @@ class BookDetails extends React.Component {
             body: JSON.stringify(newComment),
             method: "POST"
         })
+
+        var id = await res.json()
+        newComment.ReviewID = id.id;
         
         //var newComment = await res.json();
         var comments = this.state.comments;
